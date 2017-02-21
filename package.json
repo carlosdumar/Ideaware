@@ -5,7 +5,8 @@
   "main": "gulpfile.js",
   "dependencies": {
     "gulp": "^3.9.1",
-    "gulp-server": "^0.1.0"
+    "gulp-server": "^0.1.0",
+    "normalize-styl": "^4.1.1"
   },
   "devDependencies": {
     "browserify": "^14.1.0",
