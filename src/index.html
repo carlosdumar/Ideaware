@@ -10,17 +10,22 @@
 <body>
   <header>
     <nav class="navbar">
-      <div class="">
+      <div class="container">
         <figure class="navbar-logo">
           <img src="./assets/images/logo-footer.png" alt="" width="200px">
         </figure>
         <div class="navbar-button">
-          <button type="button" name="button">
+          <button id="menu-button" type="button" name="button">
             <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
           </button>
         </div>
-      </div>    
+      </div>
       <ul id="menu" class="navbar-menu">
+        <div>
+          <a href="" id="close-menu">
+            <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+          </a>
+        </div>
         <li class="item">
           <a href="#">Work</a>
         </li>
@@ -33,19 +38,25 @@
       </ul>
     </nav>
   </header>
-  <section>
 
-  </section>
-  <section>
-
-  </section>
-  <section>
-
-  </section>
-  <footer>
-
+  <footer class="footer">
+    <div class="footer-contact">
+      <span class="contactus">Contact Us</span>
+      <span class="email">contact@ideaware.co</span>
+      <div class="socialmedia">
+        <a href="">
+          <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
+        <a href="">
+          <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-youtube-play fa-lg" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
   </footer>
   <script type="text/javascript" src="./assets/lib/angular/angular.min.js"></script>
+  <script type="text/javascript" src="./assets/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="./assets/lib/angular/angular-route.min.js"></script>
   <script type="text/javascript" src="./assets/javascript/bundle.js"></script>
 </body>
