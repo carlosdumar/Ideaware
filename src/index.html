@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="./assets/stylesheets/main.css">
   <title>Ideaware</title>
 </head>
-<body>
+<body ng-app="IdeawareApp">
   <header>
     <nav class="navbar">
       <div class="container">
@@ -38,8 +38,8 @@
       </ul>
     </nav>
   </header>
-
-  <footer class="footer">
+  <div ng-view></div>
+  <footer class="footer backgroundimage">
     <div class="footer-contact">
       <span class="contactus">Contact Us</span>
       <span class="email">contact@ideaware.co</span>
@@ -56,8 +56,8 @@
     </div>
   </footer>
   <script type="text/javascript" src="./assets/lib/angular/angular.min.js"></script>
-  <script type="text/javascript" src="./assets/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="./assets/lib/angular/angular-route.min.js"></script>
+  <script type="text/javascript" src="./assets/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="./assets/javascript/bundle.js"></script>
 </body>
 </html>
