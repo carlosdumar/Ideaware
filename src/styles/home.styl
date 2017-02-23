@@ -1,0 +1,157 @@
+.navbar
+  margin 1em 0
+  .container
+    display flex
+    justify-content space-between
+    padding 0 .5em
+  &-button
+    button
+      border none
+      background-color white
+  &-menu
+    background-color #ECF0F1
+    padding .5em .5em
+    position absolute
+    top -7em
+    text-align center
+    width 100%
+    z-index 3
+    -webkit-transition-property top /* Safari */
+    -webkit-transition-duration 1s /* Safari */
+    transition-property top
+    transition-duration 1s
+    li
+      margin .5em 0
+      a
+        color #01A2A6
+    div
+      text-align right
+      padding 0 1em
+      a
+        color lightgray
+.backgroundimage
+  background-image url('/../assets/images/landscape-.jpg')
+  background-size cover
+.home
+  position relative
+  &-image
+    height 45vh
+  &-title
+    position absolute
+    margin-top 3em
+    span
+      display block
+      color #ECEBF0
+      text-align center
+      margin-bottom .3em
+    .subtitle
+      font-size xx-large
+  &-paragraf
+    text-align center
+    margin-top 2.5em
+    h2
+      color gray
+      margin-bottom 1em
+    p
+      line-height 30px
+      font-weight 100
+.search
+  text-align center
+  margin-bottom 2em
+  form
+    margin-top 1em
+    input
+      border-radius 50px
+      border 1px solid
+      padding .5em
+      width 80%
+      color gray
+      outline none
+  .filter
+    margin 1em 0
+    span
+      font-weight 100
+    select
+      font-weight 100
+  .video
+    width 100%
+.video
+  margin 0 .5em 2em .5em
+.footer
+  display flex
+  flex-direction column
+  &-contact
+    display flex
+    flex-direction column
+    text-align center
+    padding 1em 0
+    span
+      color #ECEBF0
+    .contactus
+      font-size large
+      font-weight 100
+      margin-bottom .4em
+    .email
+      font-size x-large
+      font-weight bold
+      margin-bottom 1em
+    .socialmedia
+      margin-bottom 2em
+      a
+        color #ECEBF0
+        margin 0 .5em
+.show-menu
+  top 5em
+.hide-menu
+  top -7em
+@media (min-width: 768px) and (max-width: 991px)
+  .home
+    &-title
+      width 100%
+  .video
+    display inline-block
+    width 47%
+  .search
+    display flex
+    justify-content space-between
+    padding 0 2em
+@media (min-width: 992px)
+  .video
+    display inline-block
+    width 31%
+  .search
+    display flex
+    justify-content space-between
+    padding 0 2em
+  .navbar
+    display flex
+    &-button
+      display none
+    &-menu
+      position relative
+      top 0
+      display flex
+      justify-content space-around
+      background-color white
+      div
+        a
+          display none
+      li
+        font-weight 100
+  .home
+    &-paragraf
+      padding 0 2em
+      p
+        text-align left
+    &-title
+      width 100%
+      text-align center
+      margin-top 3em
+  .footer
+    &-contact
+      padding 3em 0
+  .home
+    &-video
+      form
+        text-align left
+        width 60%
