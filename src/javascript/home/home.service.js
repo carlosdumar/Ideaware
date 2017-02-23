@@ -62,7 +62,7 @@
           type: 'video',
           maxResults: '10',
           part: 'id,snippet',
-          categoryId: 10
+          categoryId: category
         }
       })
       .then(getVideosByCategoryComplete)

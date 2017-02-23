@@ -27,7 +27,7 @@
           })
       }
       $scope.getVideosByName = function(name, e) {
-        if (e.keyCode == 13) {
+        if (e.keyCode == 13 && name != null) {
           e.preventDefault();
           return homeFactory.getVideosByName(name)
             .then(function(data) {
