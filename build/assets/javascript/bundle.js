@@ -43,12 +43,15 @@ module.exports;
     .module('home.controllers', [])
     .controller('HomeController', HomeController)
 
-    HomeController.$inject = ['homeFactory', '$scope', '$sce'];
+    HomeController.$inject = ['homeFactory', '$scope'];
 
-    function HomeController(homeFactory, $scope, $sce) {
+    function HomeController(homeFactory, $scope) {
       var vm = this;
       vm.videos = [];
 
+      $scope.getVideosByName = getVideosByName;
+      $scope.getVideosByCategory = getVideosByCategory;
+      
       activate();
 
       function activate() {
@@ -63,10 +66,10 @@ module.exports;
             return vm.videos;
           })
           .catch(function(data) {
-            $scope.errorGetVideos = data;
+            $scope.errorgetVideos = data;
           })
       }
-      $scope.getVideosByName = function(name, e) {
+      function getVideosByName(name, e) {
         if (e.keyCode == 13 && name != null) {
           e.preventDefault();
           return homeFactory.getVideosByName(name)
@@ -76,11 +79,11 @@ module.exports;
               return vm.videos;
             })
             .catch(function(data) {
-              $scope.errorgetVideosName = data;
+              $scope.errorgetVideos = data;
             })
         }
       }
-      $scope.getVideosByCategory = function(category) {
+      function getVideosByCategory(category) {
         return homeFactory.getVideosByCategory(category)
           .then(function(data) {
             vm.videos = data;
@@ -88,7 +91,7 @@ module.exports;
             return vm.videos;
           })
           .catch(function(data) {
-            $scope.errorgetVideosByCategory = data;
+            $scope.errorgetVideos = data;
           })
       }
     }
@@ -144,7 +147,9 @@ module.exports;
     };
 
     function getVideos() {
-      return $http.get('https://www.googleapis.com/youtube/v3/search', {
+      var defered = $q.defer();
+
+      $http.get('https://www.googleapis.com/youtube/v3/search', {
         params: {
           key: 'AIzaSyDePIwC37Krxpa3PStBRPIFE1gJQNG4Bwc',
           type: 'video',
@@ -152,19 +157,27 @@ module.exports;
           part: 'id,snippet'
         }
       })
-        .then(getVideosComplete)
-        .catch(getVideosFailed);
+      .then(getVideosComplete)
+      .catch(getVideosFailed);
 
-        function getVideosComplete(response, status, headers, config) {
-          return response.data;
+      function getVideosComplete(response) {
+        if(response.status == 200) {
+          defered.resolve(response.data);
         }
-        function getVideosFailed(data, status, headers, config) {
-          var errorMessage = "The request failed with response" + data + "and status code: " + status;
-          return errorMessage;
+        else {
+          defered.reject(response.data);
         }
+      }
+      function getVideosFailed(response) {
+        var errorMessage = "The request failed with response: " + response.data.error.message + "and status code: " + response.status;
+        defered.reject(errorMessage);
+      }
+      return defered.promise;
     }
     function getVideosByName(name) {
-      return $http.get('https://www.googleapis.com/youtube/v3/search', {
+      var defered = $q.defer();
+
+      $http.get('https://www.googleapis.com/youtube/v3/search', {
         params: {
           key: 'AIzaSyDePIwC37Krxpa3PStBRPIFE1gJQNG4Bwc',
           type: 'video',
@@ -175,17 +188,25 @@ module.exports;
       })
       .then(getVideosNameComplete)
       .catch(getVideosNameFailed);
-
-      function getVideosNameComplete(response, status, headers, config) {
-        return response.data;
+      
+      function getVideosNameComplete(response) {
+        if(response.status == 200) {
+          defered.resolve(response.data);   
+        }
+        else {
+          defered.reject(response.data);
+        }
       }
-      function getVideosNameFailed(data, status, headers, config) {
-        var errorMessage = "The request failed with response" + data + "and status code: " + status;
-        return errorMessage;
+      function getVideosNameFailed(response) {
+        var errorMessage = "The request failed with response: " + response.data.error.message + " and status code: " + response.status;
+        defered.reject(errorMessage);
       }
+      return defered.promise;
     }
     function getVideosByCategory(category) {
-      return $http.get('https://www.googleapis.com/youtube/v3/search', {
+      var defered = $q.defer();
+
+      $http.get('https://www.googleapis.com/youtube/v3/search', {
         params: {
           key: 'AIzaSyDePIwC37Krxpa3PStBRPIFE1gJQNG4Bwc',
           type: 'video',
@@ -197,13 +218,19 @@ module.exports;
       .then(getVideosByCategoryComplete)
       .catch(getVideosByCategoryFailed);
 
-      function getVideosByCategoryComplete(response, status, headers, config) {
-        return response.data;
+      function getVideosByCategoryComplete(response) {
+        if(response.status == 200) {
+          defered.resolve(response.data);   
+        }
+        else {
+          defered.reject(response.data);
+        }
       }
-      function getVideosByCategoryFailed(data, status, headers, config) {
-        var errorMessage = "The request failed with response" + data + "and status code: " + status;
-        return errorMessage;
+      function getVideosByCategoryFailed(response) {
+        var errorMessage = "The request failed with response: " + response.data.error.message + " and status code: " + response.status;
+        defered.reject(errorMessage);
       }
+      return defered.promise;
     }
   }
 })();

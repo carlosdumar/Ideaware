@@ -3,12 +3,15 @@
     .module('home.controllers', [])
     .controller('HomeController', HomeController)
 
-    HomeController.$inject = ['homeFactory', '$scope', '$sce'];
+    HomeController.$inject = ['homeFactory', '$scope'];
 
-    function HomeController(homeFactory, $scope, $sce) {
+    function HomeController(homeFactory, $scope) {
       var vm = this;
       vm.videos = [];
 
+      $scope.getVideosByName = getVideosByName;
+      $scope.getVideosByCategory = getVideosByCategory;
+      
       activate();
 
       function activate() {
@@ -23,10 +26,10 @@
             return vm.videos;
           })
           .catch(function(data) {
-            $scope.errorGetVideos = data;
+            $scope.errorgetVideos = data;
           })
       }
-      $scope.getVideosByName = function(name, e) {
+      function getVideosByName(name, e) {
         if (e.keyCode == 13 && name != null) {
           e.preventDefault();
           return homeFactory.getVideosByName(name)
@@ -36,11 +39,11 @@
               return vm.videos;
             })
             .catch(function(data) {
-              $scope.errorgetVideosName = data;
+              $scope.errorgetVideos = data;
             })
         }
       }
-      $scope.getVideosByCategory = function(category) {
+      function getVideosByCategory(category) {
         return homeFactory.getVideosByCategory(category)
           .then(function(data) {
             vm.videos = data;
@@ -48,7 +51,7 @@
             return vm.videos;
           })
           .catch(function(data) {
-            $scope.errorgetVideosByCategory = data;
+            $scope.errorgetVideos = data;
           })
       }
     }
