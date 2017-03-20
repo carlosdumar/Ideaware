@@ -39,6 +39,9 @@ module.exports;
 
 },{}],3:[function(require,module,exports){
 (function() {
+  /**
+   * 
+   */
   angular
     .module('home.controllers', [])
     .controller('HomeController', HomeController)
@@ -48,7 +51,7 @@ module.exports;
     function HomeController(homeFactory, $scope) {
       var vm = this;
       vm.videos = [];
-
+      
       $scope.getVideosByName = getVideosByName;
       $scope.getVideosByCategory = getVideosByCategory;
       
@@ -57,7 +60,11 @@ module.exports;
       function activate() {
             getVideos();
         }
-
+      /**
+       * @desc get all the videos
+       * 
+       * @returns videos
+       */
       function getVideos() {
         return homeFactory.getVideos()
           .then(function(data) {
@@ -69,6 +76,13 @@ module.exports;
             $scope.errorgetVideos = data;
           })
       }
+      /**
+       * Get videos filtered by video's name
+       * 
+       * @param {any} name - Name of the video.
+       * @param {any} e - Evento
+       * @returns Videos by names
+       */
       function getVideosByName(name, e) {
         if (e.keyCode == 13 && name != null) {
           e.preventDefault();
@@ -83,6 +97,12 @@ module.exports;
             })
         }
       }
+      /**
+       * 
+       * 
+       * @param {any} category 
+       * @returns 
+       */
       function getVideosByCategory(category) {
         return homeFactory.getVideosByCategory(category)
           .then(function(data) {
@@ -95,6 +115,12 @@ module.exports;
           })
       }
     }
+    /**
+     * 
+     * 
+     * @param {any} data 
+     * @returns 
+     */
     function createURl(data) {
       var video = [];
       data.filter(function(element) {
@@ -108,11 +134,19 @@ module.exports;
 },{}],4:[function(require,module,exports){
 (function() {
   'use strict';
+  /**
+   * 
+   */
   angular
     .module('home.directives', [])
     .directive('myParagraf', myParagraf)
     .directive('myVideos', myVideos);
-
+    
+    /**
+     * 
+     * 
+     * @returns 
+     */
     function myParagraf() {
       var directive = {
         templateUrl: './assets/templates/views/paragraf.html',
@@ -120,6 +154,11 @@ module.exports;
       }
       return directive;
     };
+    /**
+     * 
+     * 
+     * @returns 
+     */
     function myVideos() {
       var directive = {
         templateUrl: './assets/templates/views/videos.html',

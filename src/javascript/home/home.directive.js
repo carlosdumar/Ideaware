@@ -1,10 +1,18 @@
 (function() {
   'use strict';
+  /**
+   * 
+   */
   angular
     .module('home.directives', [])
     .directive('myParagraf', myParagraf)
     .directive('myVideos', myVideos);
-
+    
+    /**
+     * 
+     * 
+     * @returns 
+     */
     function myParagraf() {
       var directive = {
         templateUrl: './assets/templates/views/paragraf.html',
@@ -12,6 +20,11 @@
       }
       return directive;
     };
+    /**
+     * 
+     * 
+     * @returns 
+     */
     function myVideos() {
       var directive = {
         templateUrl: './assets/templates/views/videos.html',

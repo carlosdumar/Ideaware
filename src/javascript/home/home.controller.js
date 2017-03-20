@@ -1,4 +1,7 @@
 (function() {
+  /**
+   * 
+   */
   angular
     .module('home.controllers', [])
     .controller('HomeController', HomeController)
@@ -8,7 +11,7 @@
     function HomeController(homeFactory, $scope) {
       var vm = this;
       vm.videos = [];
-
+      
       $scope.getVideosByName = getVideosByName;
       $scope.getVideosByCategory = getVideosByCategory;
       
@@ -17,7 +20,11 @@
       function activate() {
             getVideos();
         }
-
+      /**
+       * @desc get all the videos
+       * 
+       * @returns videos
+       */
       function getVideos() {
         return homeFactory.getVideos()
           .then(function(data) {
@@ -29,6 +36,13 @@
             $scope.errorgetVideos = data;
           })
       }
+      /**
+       * Get videos filtered by video's name
+       * 
+       * @param {any} name - Name of the video.
+       * @param {any} e - Evento
+       * @returns Videos by names
+       */
       function getVideosByName(name, e) {
         if (e.keyCode == 13 && name != null) {
           e.preventDefault();
@@ -43,6 +57,12 @@
             })
         }
       }
+      /**
+       * 
+       * 
+       * @param {any} category 
+       * @returns 
+       */
       function getVideosByCategory(category) {
         return homeFactory.getVideosByCategory(category)
           .then(function(data) {
@@ -55,6 +75,12 @@
           })
       }
     }
+    /**
+     * 
+     * 
+     * @param {any} data 
+     * @returns 
+     */
     function createURl(data) {
       var video = [];
       data.filter(function(element) {
